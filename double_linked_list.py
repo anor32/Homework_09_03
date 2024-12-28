@@ -53,3 +53,40 @@ class LinkedList:
 
 
 
+class DoubldeLlUpgraded(LinkedList):
+    def __init__(self):
+       super().__init__()
+    def print_ll_from_tail(self):
+        current_tail = self.tail
+        while current_tail:
+            print(current_tail.data)
+            current_tail = current_tail.prev_node
+        return "список выведен с конца"
+
+
+
+q =DoubldeLlUpgraded()
+q.insert_at_head(1)
+q.insert_at_head(2)
+q.insert_at_head(3)
+q.print_ll_from_tail()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
