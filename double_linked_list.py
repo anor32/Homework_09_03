@@ -61,22 +61,97 @@ class DoubldeLlUpgraded(LinkedList):
         while current_tail:
             print(current_tail.data)
             current_tail = current_tail.prev_node
+
         return "список выведен с конца"
+    def insert_at_index(self,index,data):
+        current_node = self.head
+        count = 0
+        while current_node is not None:
+            if index == count:
+                current_node.data = data
+            count+=1
+            current_node = current_node.next_node
+
+    def remove_node_index(self, index):
+        current_node = self.tail
+        count = 0
+
+        while current_node is not None:
+            if index == count:
+                if current_node.prev_node:
+                    current_node.prev_node.next_node = current_node.next_node
+                if current_node.next_node:
+                    current_node.next_node.prev_node = current_node.prev_node
 
 
+                if current_node == self.tail:
+                    self.tail = current_node.prev_node
 
+                return
+            count += 1
+            current_node = current_node.prev_node
+
+    def remove_node_data(self,data):
+        current_node = self.head
+        count = 0
+
+        while current_node is not None:
+            if current_node.data == data:
+                if current_node.prev_node:
+                    current_node.prev_node.next_node = current_node.next_node
+                if current_node.next_node:
+                    current_node.next_node.prev_node = current_node.prev_node
+
+                if current_node == self.head:
+                    self.head = current_node.next_node
+
+                return
+            count += 1
+            current_node = current_node.next_node
+    def len_ll(self):
+        current_node = self.head
+        count = 0
+        while current_node:
+            count+=1
+            current_node = current_node.next_node
+
+        return count
+
+    def contains_from_head(self,data):
+        current_node = self.head
+        while current_node:
+            if current_node.data == data:
+                return True
+            current_node = current_node.next_node
+        return False
+
+    def contains_from_tail(self, data):
+        current_node = self.tail
+        while current_node:
+            if current_node.data == data:
+                return True
+            current_node = current_node.prev_node
+        return False
+
+    def contains_from(self,data, choose):
+        if choose == "head":
+            return self.contains_from_head(data)
+        if choose == "tail":
+           return self.contains_from_tail(data)
 q =DoubldeLlUpgraded()
 q.insert_at_head(1)
 q.insert_at_head(2)
 q.insert_at_head(3)
+q.insert_at_head(4)
+q.insert_at_head(5)
+q.insert_at_index(2,"10")
+q.remove_node_index(0)
+q.remove_node_data("10")
 q.print_ll_from_tail()
-
-
-
-
-
-
-
+q.len_ll()
+print(q.contains_from_head(2))
+print(q.contains_from_tail(4))
+print(q.contains_from(5,"tail"))
 
 
 
